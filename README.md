@@ -1,10 +1,6 @@
 Swiftchina 雨燕中文
 =======
 
-翻译说明
----------------
-本网站为公益项目，架设在linode，使用又拍云加速。
-
 Swift is an innovative new programming language for Cocoa and Cocoa Touch. Writing code is interactive and fun, the syntax is concise yet expressive, and apps run lightning-fast. Swift is ready for your next iOS and OS X project — or for addition into your current app — because Swift code works side-by-side with Objective-C.
 
 Getting Started
