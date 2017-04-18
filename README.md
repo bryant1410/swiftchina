@@ -8,7 +8,7 @@ Getting Started
 
 This guide describes the steps needed to download, install, configure, and run the basic examples for Swift.
 
-##Basic Setup
+## Basic Setup
 
 >IMPORTANT
 This is a preliminary document for an API or technology in development. Apple is supplying this information to help you plan for the adoption of the technologies and programming interfaces described herein for use on Apple-branded products. This information is subject to change, and software implemented according to this document should be tested with final operating system software and final documentation. Newer versions of this document may be provided with future seeds of the API or technology.
@@ -26,7 +26,7 @@ This guide covers three important aspects of this compatibility that you can use
 
 Before you get started learning about these features, you need a basic understanding of how to set up a Swift environment in which you can access Cocoa system frameworks.
 
-###Setting Up Your Swift Environment
+### Setting Up Your Swift Environment
 
 To start experimenting with accessing Cocoa frameworks in Swift, create a Swift-based app from one of the Xcode templates.
 
@@ -42,7 +42,7 @@ A Swift project’s structure is nearly identical to an Objective-C project, wit
 
 From here, you can start experimenting by writing Swift code in the app delegate, or you can create a new Swift class file by choosing File > New > File > (iOS or OS X) > Other > Swift.
 
-###Understanding the Swift Import Process
+### Understanding the Swift Import Process
 
 After you have your Xcode project set up, you can import any framework from the Cocoa platform to start working with Objective-C from Swift.
 
@@ -70,13 +70,13 @@ The model for importing Swift into Objective-C is similar to the one used for im
 Interoperability
 ---------------
 
-##Interacting with Objective-C APIs
+## Interacting with Objective-C APIs
 
 Interoperability is the ability to interface between Swift and Objective-C in either direction, letting you access and use pieces of code written in one language in a file of the other language. As you begin to integrate Swift into your app development workflow, it’s a good idea to understand how you can leverage interoperability to redefine, improve, and enhance the way you write Cocoa apps.
 
 One important aspect of interoperability is that it lets you work with Objective-C APIs when writing Swift code. After you import an Objective-C framework, you can instantiate classes from it and interact with them using native Swift syntax.
 
-###Initialization
+### Initialization
 
 To instantiate an Objective-C class in Swift, you call one of its initializers with Swift syntax. When Objective-C init methods come over to Swift, they take on native Swift initializer syntax. The “init” prefix gets sliced off and becomes a keyword to indicate that the method is an initializer. For init methods that begin with “initWith,“ the “With” also gets sliced off. The first letter of the selector piece that had “init” or “initWith” split off from it becomes lowercase, and that selector piece is treated as the name of the first argument. The rest of the selector pieces also correspond to argument names. Each selector piece goes inside the parentheses and is required at the call site.
 
@@ -107,7 +107,7 @@ In Swift, you call it like this:
 let color = UIColor(red: 0.5, green: 0.0, blue: 0.5, alpha: 1.0)
 ```
 
-###Accessing Properties
+### Accessing Properties
 
 Access and set properties on Objective-C objects in Swift using dot syntax.
 
@@ -123,7 +123,7 @@ When getting or setting a property, use the name of the property without appendi
 
 In Objective-C, a method that returns a value and takes no arguments can be treated as an implicit getter—and be called using the same syntax as a getter for a property. This is not the case in Swift. In Swift, only properties that are written using the @property syntax in Objective-C are imported as properties. Methods are imported and called as described in Working with Methods.
 
-###Working with Methods
+### Working with Methods
 
 When calling Objective-C methods from Swift, use dot syntax.
 
@@ -148,7 +148,7 @@ myTableView.layoutIfNeeded()
 
 ```
 
-###id Compatibility
+### id Compatibility
 
 Swift includes a protocol type named AnyObject that represents any kind of object, just as id does in Objective-C. The AnyObject protocol allows you to write type-safe Swift code while maintaining the flexibility of an untyped object. Because of the additional safety provided by the AnyObject protocol, Swift imports id as AnyObject.
 
@@ -204,7 +204,7 @@ let timeInterval = myDate.timeIntervalSinceReferenceDate
 
 ```
 
-###Working with nil
+### Working with nil
 
 In Objective-C, you work with references to objects using raw pointers that could be NULL (also referred to as nil in Objective-C). In Swift, all values—including structures and object references—are guaranteed to be non–nil. Instead, you represent a value that could be missing by wrapping the type of the value in an optional type. When you need to indicate that a value is missing, you use the value nil. You can read more about optionals in Optionals.
 
@@ -213,7 +213,7 @@ Because Objective-C does not make any guarantees that an object is non-nil, Swif
 In some cases, you might be absolutely certain that an Objective-C method or property never returns a nil object reference. To make objects in this special scenario more convenient to work with, Swift imports object types as implicitly unwrapped optionals. Implicitly unwrapped optional types include all of the safety features of optional types. In addition, you can access the value directly without checking for nil or unwrapping it yourself. When you access the value in this kind of optional type without safely unwrapping it first, the implicitly unwrapped optional checks whether the value is missing. If the value is missing, a runtime error occurs. As a result, you should always check and unwrap an implicitly unwrapped optional yourself, unless you are sure that the value cannot be missing.
 
 
-###Extensions
+### Extensions
 
 A Swift extension is similar to an Objective-C category. Extensions expand the behavior of existing classes, structures, and enumerations, including those defined in Objective-C. You can define an extension on a type from either a system framework or one of your own custom types. Simply import the appropriate module, and refer to the class, structure, or enumeration by the same name that you would use in Objective-C.
 
@@ -252,7 +252,7 @@ You can also use extensions to add protocol conformance to a class without subcl
 
 You cannot use extensions to override existing methods or properties on Objective-C types.
 
-###Closures
+### Closures
 
 Objective-C blocks are automatically imported as Swift closures. For example, here is an Objective-C block variable:
 
@@ -271,7 +271,7 @@ Swift closures and Objective-C blocks are compatible, so you can pass Swift clos
 
 Closures have similar capture semantics as blocks but differ in one key way: Variables are mutable rather than copied. In other words, the behavior of __block in Objective-C is the default behavior for variables in Swift.
 
-###Object Comparison
+### Object Comparison
 
 There are two distinct types of comparison when you compare two objects in Swift. The first, equality (==), compares the contents of the objects. The second, identity (===), determines whether or not the constants or variables refer to the same object instance.
 
@@ -280,7 +280,7 @@ Swift and Objective-C objects are typically compared in Swift using the == and =
 As part of implementing equality for your class, be sure to implement the hash property according to the rules in Object comparison. Further, if you want to use your class as keys in a dictionary, also conform to the Hashable protocol and implement the hashValue property.
 
 
-###Swift Type Compatibility
+### Swift Type Compatibility
 
 When you define a Swift class that inherits from NSObject or any other Objective-C class, the class is automatically compatible with Objective-C. All of the steps in this section have already been done for you by the Swift compiler. If you never import a Swift class in Objective-C code, you don’t need to worry about type compatibility in this case as well. Otherwise, if your Swift class does not derive from an Objective-C class and you want to use it from Objective-C code, you can use the @objc attribute described below.
 
@@ -302,7 +302,7 @@ class Белка {
 
 When you use the @objc(<#name#>) attribute on a Swift class, the class is made available in Objective-C without any namespacing. As a result, this attribute can also be useful when you migrate an archivable Objective-C class to Swift. Because archived objects store the name of their class in the archive, you should use the @objc(<#name#>) attribute to specify the same name as your Objective-C class so that older archives can be unarchived by your new Swift class.
 
-###Objective-C Selectors
+### Objective-C Selectors
 
 An Objective-C selector is a type that refers to the name of an Objective-C method. In Swift, Objective-C selectors are represented by the Selector structure. You can construct a selector with a string literal, such as let mySelector: Selector = "tappedButton:". Because string literals can be automatically converted to selectors, you can pass a string literal to any method that accepts a selector.
 
@@ -326,11 +326,11 @@ class MyViewController: UIViewController {
 
 If your Swift class inherits from an Objective-C class, all of the methods and properties in the class are available as Objective-C selectors. Otherwise, if your Swift class does not inherit from an Objective-C class, you need to prefix the symbol you want to use as a selector with the @objc attribute, as described in Swift Type Compatibility.
 
-##Writing Swift Classes with Objective-C Behavior
+## Writing Swift Classes with Objective-C Behavior
 
 Interoperability lets you define Swift classes that incorporate Objective-C behavior. You can subclass Objective-C classes, adopt Objective-C protocols, and take advantage of other Objective-C functionality when writing a Swift class. This means that you can create classes based on familiar, established behavior in Objective-C and enhance them with Swift’s modern and powerful language features.
 
-###Inheriting from Objective-C Classes
+### Inheriting from Objective-C Classes
 
 In Swift, you can define subclasses of Objective-C classes. To create a Swift class that inherits from an Objective-C class, add a colon (:) after the name of the Swift class, followed by the name of the Objective-C class.
 
@@ -344,7 +344,7 @@ class MySwiftViewController: UIViewController {
 
 You get all the functionality offered by the superclass in Objective-C. If you provide your own implementations of the superclass’s methods, remember to use the override keyword.
 
-###Adopting Protocols
+### Adopting Protocols
 
 In Swift, you can adopt protocols that are defined in Objective-C. Like Swift protocols, any Objective-C protocols go in a comma-separated list following the name of a class’s superclass, if any.
 
@@ -359,18 +359,18 @@ Objective-C protocols come in as Swift protocols. If you want to refer to the UI
 Because the namespace of classes and protocols is unified in Swift, the NSObject protocol in Objective-C is remapped to NSObjectProtocol in Swift.
 
 
-###Writing Initializers and Deinitializers
+### Writing Initializers and Deinitializers
 
 The Swift compiler ensures that your initializers do not leave any properties in your class uninitialized to increase the safety and predictability of your code. Additionally, unlike Objective-C, in Swift there is no separate memory allocation method to invoke. You use native Swift initialization syntax even when you are working with Objective-C classes—Swift converts Objective-C initialization methods to Swift initializers. You can read more about implementing your own initializers in Initializers.
 
 When you want to perform additional clean-up before your class is deallocated, you can implement a deninitializer instead of the dealloc method. Swift deinitializers are called automatically, just before instance deallocation happens. Swift automatically calls the superclass deinitializer after invoking your subclass’s deinitializer. When you are working with an Objective-C class or your Swift class inherits from an Objective-C class, Swift calls your class’s superclass dealloc method for you as well. You can read more about implementing your own deinitializers in Deinitializers.
 
-###Integrating with Interface Builder
+### Integrating with Interface Builder
 
 The Swift compiler includes attributes that enable Interface Builder features for your Swift classes. As in Objective-C, you can use outlets, actions, and live rendering in Swift.
 
 
-###Working with Outlets and Actions
+### Working with Outlets and Actions
 
 Outlets and actions allow you to connect your source code to user interface objects in Interface Builder. To use outlets and actions in Swift, insert @IBOutlet or @IBAction just before the property or method declaration. You use the same @IBOutlet attribute to declare an outlet collection—just specify an array for the type.
 
@@ -390,7 +390,7 @@ class MyViewController: UIViewController {
 
 Because the sender parameter of the buttonTapped: method wasn’t used, the parameter name can be omitted.
 
-###Live Rendering
+### Live Rendering
 
 You can use two different attributes—@IBDesignable and @IBInspectable—to enable live, interactive custom view design in Interface Builder. When you create a custom view that inherits from UIView or NSView, you can add the @IBDesignable attribute just before the class declaration. After you add the custom view to Interface Builder (by setting the custom class of the view in the inspector pane), Interface Builder renders your view in the canvas.
 
@@ -407,23 +407,23 @@ class MyCustomView: UIView {
 }
 ```
 
-###Specifying Property Attributes
+### Specifying Property Attributes
 
 In Objective-C, properties have a range of potential attributes that specify additional information about a property’s behavior. In Swift, you specify these property attributes in a different way.
 
-###Strong and Weak
+### Strong and Weak
 
 Swift properties are strong by default. Use the weak keyword to indicate that a property has a weak reference to the object stored as its value. This keyword can be used only for properties that are optional class types. For more information, see Attributes.
 
-###Read/Write and Read-Only
+### Read/Write and Read-Only
 
 In Swift, there are no readwrite and readonly attributes. When declaring a stored property, use let to make it read-only, and use var to make it read/write. When declaring a computed property, provide a getter only to make it read-only and provide both a getter and setter to make it read/write. For more information, see Properties.
 
-###Copy Semantics
+### Copy Semantics
 
 In Swift, the Objective-C copy property attribute translates to @NSCopying. The type of the property must conform to the NSCopying protocol. For more information, see Attributes.
 
-###Implementing Core Data Managed Object Subclasses
+### Implementing Core Data Managed Object Subclasses
 
 Core Data provides the underlying storage and implementation of properties in subclasses of the NSManagedObject class. Add the @NSManaged attribute before each property definition in your managed object subclass that corresponds to an attribute or relationship in your Core Data model. Like the @dynamic attribute in Objective-C, the @NSManaged attribute informs the Swift compiler that the storage and implementation of a property will be provided at runtime. However, unlike @dynamic, the @NSManaged attribute is available only for Core Data support.
 
